@@ -8,6 +8,9 @@
 #define false 0
 #define bool char
 
+#define Pi M_PI
+#define Tau Pi*2
+
 typedef struct 
 {
 	bool F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12;
@@ -71,6 +74,9 @@ float radiansToDegrees(float rad); // Returns a float containing the degrees.
 int randomNum(int min, int max); // Returns a random number, is inclusive.
 float randomNumF(float min, float max); // Returns a random number of floating point. (is inclusive?)
 float giveAngle(int x0, int y0, int x1, int y1); // Where z0 is the center and z1 are the coordinates you want the angle for.
+int sign(int num); // Returns -1 if the number is less than 0, 1 if the number is bigger than 0 and 0 if the number is equal to 0;
+float signf(float num); // as above but for floating point numbers
+
 // bool noiseGen(double *noise, double width, double height); // Returns an array full of noise.
 // double smoothNoise(double noise[][], double x, double y, double width, double height); // Smooths the noise. Don't use this, it's only for the noiseDraw() function.
 // double turbulentNoise(double x, double y, double scale); // Applies turbulence to the noise. Don't use this, it's only for the noiseDraw() function.

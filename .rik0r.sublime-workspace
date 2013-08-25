@@ -523,15 +523,7 @@
 			"file": "main.c",
 			"settings":
 			{
-				"buffer_size": 7053,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "QL.h",
-			"settings":
-			{
-				"buffer_size": 4586,
+				"buffer_size": 7172,
 				"line_ending": "Unix"
 			}
 		},
@@ -540,6 +532,14 @@
 			"settings":
 			{
 				"buffer_size": 360,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "QL.h",
+			"settings":
+			{
+				"buffer_size": 4819,
 				"line_ending": "Unix"
 			}
 		},
@@ -729,6 +729,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"targetAngle",
+			"enemies[i",
 			"player",
 			"enemies",
 			"i",
@@ -854,9 +856,7 @@
 			"x",
 			"int ",
 			"player.move.",
-			"x",
-			" += 1 * dt",
-			" -= 1 * dt"
+			"x"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -878,7 +878,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -887,15 +887,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7053,
+						"buffer_size": 7172,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5237,
-								5237
+								5698,
+								5698
 							]
 						],
 						"settings":
@@ -904,41 +904,13 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3262.0,
+						"translation.y": 3220.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "QL.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4586,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2835,
-								2835
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "Makefile",
 					"semi_transient": false,
 					"settings":
@@ -950,8 +922,8 @@
 						"selection":
 						[
 							[
-								360,
-								360
+								203,
+								203
 							]
 						],
 						"settings":
@@ -970,6 +942,34 @@
 			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 2,
+					"file": "QL.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4819,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 630.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
 				{
 					"buffer": 3,
 					"semi_transient": false,
@@ -1028,7 +1028,7 @@
 		"cols":
 		[
 			0.0,
-			0.5,
+			0.77890625,
 			1.0
 		],
 		"rows":
@@ -1040,7 +1040,7 @@
 	"menu_visible": false,
 	"output.exec":
 	{
-		"height": 255.0
+		"height": 366.0
 	},
 	"project": ".rik0r.sublime-project",
 	"replace":

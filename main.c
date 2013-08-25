@@ -31,7 +31,8 @@ typedef struct
 	float targetAngle; // For the enemy, the angle of the player in relation to the enemy :3
 	bullet bullets[maxBullets]; // array for the bullets
 	// health:
-	float sheilds;
+	int sheilds;
+	// int r, g;
 } entity;
 
 typedef struct
@@ -86,13 +87,14 @@ void load()
 	player.moveSpeed = 4;
 	player.gunAngle = 20.0;
 	player.gunRad = 40;
-	player.sheilds = 100;
+	player.sheilds = -1;
+	genEnemy();
 	genEnemy();
 }
 
 void draw()
 {
-	setColour(0, 255, 0, 255);
+	setColour(abs(-player.sheilds), player.sheilds, 0, 255);
 	circle("line", player.x, player.y, player.r);
 	setColour(255, 255, 255, 255);
 	circle("line", player.gunX, player.gunY, 3);
@@ -100,10 +102,14 @@ void draw()
 	// enemy drawing
 	for (i = 0; i <= enemyCount; i++)
 	{
-		setColour(255, 255, 0, 255);
-		circle("line", enemies[i].x, enemies[i].y, enemies[i].r);
-		setColour(255, 255, 0, 255);
-		circle("line", enemies[i].gunX, enemies[i].gunY, 3);
+		if (enemies[i].active == true)
+		{
+			setColour(abs(-enemies[i].sheilds), enemies[i].sheilds, 0, 255);
+			circle("line", enemies[i].x, enemies[i].y, enemies[i].r);
+			setColour(255, 255, 255, 255);
+			circle("line", enemies[i].gunX, enemies[i].gunY, 3);
+			printf("Sheilds: %i\n", enemies[i].sheilds);
+		}
 	}
 	// player bullets :3
 	setColour(200, 50, 0, 255);
@@ -175,7 +181,7 @@ void controls() // Some input lag as such, but nothing game breaking yet :S
 			default:
 				break;
 		}
-		newBullet->speed = randomNum(2, 4);
+		newBullet->speed = randomNum(20, 40);
 		newBullet->x = cos(degreesToRadians(newBullet->angle))*newBullet->moveR + newBullet->origX;
 		newBullet->y = sin(degreesToRadians(newBullet->angle))*newBullet->moveR + newBullet->origY;
 	}
@@ -207,16 +213,18 @@ void logic()
 	{
 		if (enemies[i].active == true)
 		{
-			enemies[i].gunX = cos(degreesToRadians(enemies[i].gunAngle))*enemies[i].gunRad + enemies[i].x;
-			enemies[i].gunY = sin(degreesToRadians(enemies[i].gunAngle))*enemies[i].gunRad + enemies[i].y;
 			// player - enemy collision
 			if ((circleCircleCollision(player.x, player.y, player.r, enemies[i].x, enemies[i].y, enemies[i].r)) == false)
 			{
 				float angle = giveAngle(enemies[i].x, enemies[i].y, player.x, player.y);
 				player.x = cos(angle)*2 + player.x;
 				player.y = sin(angle)*2 + player.y;
-				player.sheilds--;
+				player.sheilds--; player.sheilds--;
 				enemies[i].sheilds--;
+			}
+			if (enemies[i].sheilds <= -256) // player death
+			{
+				enemies[i].active = false;
 			}
 			int xDelta, yDelta;
 			for (j = 0; j < maxBullets; j++) // player bullets - enemy collision
@@ -233,25 +241,21 @@ void logic()
 				}
 			}
 			// get the player's angle:
-			enemies[i].targetAngle = giveAngle(player.x, player.y, enemies[i].x, enemies[i].y);
-			// move the gun to the player's angle!
-			if (!(enemies[i].gunAngle < enemies[i].targetAngle+4 && enemies[i].gunAngle > enemies[i].targetAngle-4))
-			{
-				enemies[i].gunAngle += 3.0;
-			}
-			// if (enemies[i].gunAngle > enemies[i].targetAngle)
-			// {
-			// 	enemies[i].gunAngle -= 6.0;
+			enemies[i].targetAngle = giveAngle(enemies[i].x, enemies[i].y, player.x, player.y);
+			// // Move the gun to the player:
+			// double dif = enemies[i].targetAngle - enemies[i].gunAngle;
+			// int turnDir = dif > 0 ? (dif > Tau/2 ? 1:-1) : (dif >= -Tau/2 ? 1:-1);
+			// double rot = 6*turnDir;
+			// if (abs(enemies[i].targetAngle - (enemies[i].gunAngle + rot) <= abs(rot)))
+			// { 
+			// 	enemies[i].gunAngle = enemies[i].targetAngle; 
 			// }
-			// correct the angle :3
-			if (radiansToDegrees(enemies[i].gunAngle) < 0)
-			{
-				enemies[i].gunAngle = degreesToRadians(maxAngle);
-			}
-			else if (radiansToDegrees(enemies[i].gunAngle) < maxAngle)
-			{
-				enemies[i].gunAngle = degreesToRadians(0);	
-			}
+			// else
+			// { 
+			// 	enemies[i].gunAngle += rot;
+			// }
+			// enemies[i].gunX = cos(degreesToRadians(enemies[i].gunAngle))*enemies[i].gunRad + enemies[i].x;
+			// enemies[i].gunY = sin(degreesToRadians(enemies[i].gunAngle))*enemies[i].gunRad + enemies[i].y;
 		}
 	}
 }
@@ -293,10 +297,11 @@ void genEnemy()
 	newEnemy->x = randomNum(0, scrWidth - newEnemy->r);
 	newEnemy->y = randomNum(0, scrHeight - newEnemy->r);
 	newEnemy->moveSpeed = randomNum(4, 6);
-	newEnemy->gunRad = 40;
-	newEnemy->gunAngle = degreesToRadians(randomNum(0, 359));
-	newEnemy->gunX = cos(newEnemy->gunAngle)*newEnemy->gunRad + newEnemy->x;
-	newEnemy->gunY = sin(newEnemy->gunAngle)*newEnemy->gunRad + newEnemy->y;
+	// newEnemy->gunRad = 40;
+	// newEnemy->gunAngle = degreesToRadians(randomNum(0, 359));
+	newEnemy->sheilds = -1;
+	// newEnemy->gunX = cos(newEnemy->gunAngle)*newEnemy->gunRad + newEnemy->x;
+	// newEnemy->gunY = sin(newEnemy->gunAngle)*newEnemy->gunRad + newEnemy->y;
 
 	newEnemy->targetAngle = giveAngle(newEnemy->x, newEnemy->y, player.x, player.x);
 
