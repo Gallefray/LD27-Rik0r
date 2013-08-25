@@ -1,0 +1,4 @@
+OrigBuildNum=$(cat .buildNum)
+buildNum=$(($OrigBuildNum + 1))
+echo $buildNum > .buildNum
+echo Current build: $buildNum

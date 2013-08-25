@@ -1,0 +1,1091 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"max",
+				"maxAngle"
+			],
+			[
+				"rad",
+				"degreesToRadians"
+			],
+			[
+				"gun",
+				"gunAngle"
+			],
+			[
+				"enem",
+				"enemies"
+			],
+			[
+				"ene",
+				"enemies"
+			],
+			[
+				"gu",
+				"gunAngle"
+			],
+			[
+				"scr",
+				"scrWidth"
+			],
+			[
+				"orig",
+				"origX"
+			],
+			[
+				"bull",
+				"bulletCount"
+			],
+			[
+				"bullet",
+				"bulletCount"
+			],
+			[
+				"G",
+				"gunY"
+			],
+			[
+				"p",
+				"player"
+			],
+			[
+				"targ",
+				"targAngle"
+			],
+			[
+				"full",
+				"fullscreen"
+			],
+			[
+				"def",
+				"define"
+			],
+			[
+				"move",
+				"moveRadius"
+			],
+			[
+				"tar",
+				"targY"
+			],
+			[
+				"org",
+				"origY"
+			],
+			[
+				"or",
+				"origX"
+			],
+			[
+				"ori",
+				"origY"
+			],
+			[
+				"copy",
+				"copySurface"
+			],
+			[
+				"img",
+				"imgType"
+			],
+			[
+				"QL",
+				"QLimage"
+			],
+			[
+				"type",
+				"typedef"
+			],
+			[
+				"im",
+				"imgType"
+			],
+			[
+				"mouse",
+				"mouseInput"
+			],
+			[
+				"de",
+				"default"
+			],
+			[
+				"lef",
+				"leftButton"
+			],
+			[
+				"rand",
+				"randomNum"
+			],
+			[
+				"set",
+				"setColour"
+			],
+			[
+				"st",
+				"strcmp"
+			],
+			[
+				"time",
+				"timeDelta"
+			],
+			[
+				"delta",
+				"deltaTime"
+			],
+			[
+				"fps",
+				"FPSUpdateFreq"
+			],
+			[
+				"frame",
+				"framesRendered"
+			],
+			[
+				"fr",
+				"framesRendered"
+			],
+			[
+				"an",
+				"angle"
+			],
+			[
+				"in",
+				"inc	#include \"…\""
+			],
+			[
+				"want",
+				"wantedDrawTime"
+			],
+			[
+				"scrT",
+				"scrTransY"
+			],
+			[
+				"line",
+				"lineWidth"
+			],
+			[
+				"scrTrans",
+				"scrTransX"
+			],
+			[
+				"scrTr",
+				"scrTransX"
+			],
+			[
+				"trans",
+				"transPY"
+			],
+			[
+				"screen",
+				"screenW"
+			],
+			[
+				"re",
+				"rectThere"
+			],
+			[
+				"T",
+				"TAB"
+			],
+			[
+				"key",
+				"keyInput"
+			],
+			[
+				"SDL_",
+				"SDL_QUIT"
+			],
+			[
+				"co",
+				"cos	constant string"
+			],
+			[
+				"d",
+				"dir"
+			],
+			[
+				"res",
+				"respdata"
+			],
+			[
+				"marg",
+				"margin"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"padding",
+				"padding-top"
+			],
+			[
+				"tex",
+				"text-decoration"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"margin-",
+				"margin-top"
+			],
+			[
+				"ma",
+				"margin-top"
+			],
+			[
+				"width",
+				"min-width"
+			],
+			[
+				"paddi",
+				"padding-left"
+			],
+			[
+				"image",
+				"background-image"
+			],
+			[
+				"pading",
+				"padding-top"
+			],
+			[
+				"light",
+				"lightbox"
+			],
+			[
+				"bak",
+				"background-color"
+			],
+			[
+				"background",
+				"background-color"
+			],
+			[
+				"colo",
+				"background-color"
+			],
+			[
+				"lightbo",
+				"lightboxIsOn"
+			],
+			[
+				"main",
+				"mainCount"
+			],
+			[
+				"fo",
+				"font-style"
+			],
+			[
+				"pa",
+				"padding-left"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"right",
+				"rightCont"
+			],
+			[
+				"border-top",
+				"border-top-right-radius"
+			],
+			[
+				"border",
+				"border-radius"
+			],
+			[
+				"mar",
+				"margin-left"
+			],
+			[
+				"lightBox",
+				"lightboxUpd"
+			],
+			[
+				"setD",
+				"love.graphics.setMode"
+			],
+			[
+				"ke",
+				"love.keyboard.isDown"
+			],
+			[
+				"randGen",
+				"randGenPlanets"
+			],
+			[
+				"dialog",
+				"dialogOn"
+			],
+			[
+				"recta",
+				"love.graphics.rectangle"
+			],
+			[
+				"str",
+				"strRemLastChar"
+			],
+			[
+				"player",
+				"player_tile"
+			],
+			[
+				"EDITtele",
+				"EDITteleptReciv"
+			],
+			[
+				"EDITte",
+				"EDITteleptReciv"
+			],
+			[
+				"moveS",
+				"moveSpeed"
+			],
+			[
+				"selec",
+				"selection"
+			],
+			[
+				"selection",
+				"selectionText"
+			],
+			[
+				"conv",
+				"convBelt"
+			],
+			[
+				"enemy",
+				"enemy"
+			],
+			[
+				"print",
+				"printF"
+			],
+			[
+				"block",
+				"blockSize"
+			],
+			[
+				"r",
+				"love.run"
+			],
+			[
+				"dirTh",
+				"dirThree"
+			],
+			[
+				"dirTw",
+				"dirTwo"
+			],
+			[
+				"telept",
+				"teleptReciv"
+			],
+			[
+				"retun",
+				"returnTable"
+			],
+			[
+				"carry",
+				"carryBox"
+			],
+			[
+				"setPo",
+				"love.mouse.setPosition"
+			],
+			[
+				"return",
+				"returnTable"
+			],
+			[
+				"play",
+				"playerMove"
+			],
+			[
+				"isD",
+				"love.mouse.isDown"
+			],
+			[
+				"rect",
+				"love.graphics.rectangle"
+			],
+			[
+				"rec",
+				"love.graphics.rectangle"
+			],
+			[
+				"min",
+				"min-width"
+			],
+			[
+				"list",
+				"list-style-position"
+			],
+			[
+				"tet",
+				"text-decoration"
+			],
+			[
+				"aY",
+				"aY"
+			],
+			[
+				"box",
+				"box1"
+			],
+			[
+				"curr",
+				"currentLevel"
+			],
+			[
+				"ice",
+				"iceentitycollide"
+			],
+			[
+				"en",
+				"entity-__"
+			],
+			[
+				"mo",
+				"movespeed"
+			],
+			[
+				"gr",
+				"Graphics"
+			],
+			[
+				"sl",
+				"slipperyness"
+			],
+			[
+				"grid",
+				"grid_y"
+			],
+			[
+				"di",
+				"dist"
+			],
+			[
+				"bo",
+				"boxCollide"
+			],
+			[
+				"else",
+				"elseif"
+			],
+			[
+				"anom",
+				"anomaly1"
+			],
+			[
+				"ano",
+				"anomaly1"
+			],
+			[
+				"dire",
+				"direction"
+			],
+			[
+				"lo",
+				"love"
+			],
+			[
+				"coll",
+				"playerCollide"
+			],
+			[
+				"fun",
+				"function	function"
+			],
+			[
+				"act",
+				"act_y"
+			],
+			[
+				"gri",
+				"grid_y"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "main.c",
+			"settings":
+			{
+				"buffer_size": 7053,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "QL.h",
+			"settings":
+			{
+				"buffer_size": 4586,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Makefile",
+			"settings":
+			{
+				"buffer_size": 360,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<sorceress> 1. compute angle between two bearings\n<sorceress> 2. fix angle if >180 degrees\n<sorceress> 3. compare\n\n\n<Gallefray> sorceress: so the computing of the angle between bearings\n<Gallefray> sorceress: that would be done with atan2?\n<sorceress> no, angle = bearing1 - bearing2\n<Gallefray> sorceress: and how does one get these bearings?\n<sorceress>  enemies[i].targetAngle is one bearing\n<Gallefray> right\n<Gallefray> but where be the other bearing\n<Gallefray> a rand point on the screen?\n<the31> Subtraction isn't quite enough though....\n<sorceress> enemies[i].gunAngle \n<sorceress> the31, see point 2\n<the31> Oh, right, computing angle between includes the \"correction\" in my mind.\n<Gallefray> sorceress: compare?\n<sorceress> well that's where you determine which direction to rotate\n<sorceress> and add or subtract \n<sorceress> 6\n<sorceress> it'll be determined by the sign of the fixed angle\n<Gallefray> sorceress: the sign?\n<sorceress> yes, + or -\n* Gallefray looks up towards the sky for a sign\n<Gallefray> ohhhh",
+			"settings":
+			{
+				"buffer_size": 1025,
+				"line_ending": "Unix",
+				"name": "<sorceress> 1. compute angle between two bearings"
+			}
+		}
+	],
+	"build_system": "Packages/Makefile/Make.sublime-build",
+	"command_palette":
+	{
+		"height": 272.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Discover Packages"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 125.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/finn/Dropbox/Git_Repo/personal/code/QuackLang/QL_LANG/QL.h",
+		"/home/finn/Dropbox/Git_Repo/personal/code/C/QuackLang Proj/galacticRift/main.c",
+		"/home/finn/Dropbox/Git_Repo/personal/code/QuackLang/QL_LANG/QL.c",
+		"/home/finn/streamTwitch.sh",
+		"/home/finn/Dropbox/Git_Repo/personal/code/QuackLang/QL_LANG/QLimage.o",
+		"/home/finn/Dropbox/Git_Repo/personal/code/QuackLang/QL_LANG/QLinput.c",
+		"/media/KINGSTON/to arch/delta time.txt",
+		"/home/finn/Dropbox/Git_Repo/personal/code/QuackLang/QL_LANG/test.c",
+		"/media/usb/to arch/delta time.txt",
+		"/media/usb/Documents/Code/QuackLang/QL_LANG/QL.c",
+		"/home/finn/Documents/rude-love-f4536f333620/src/scripts/boot.lua",
+		"/home/finn/Documents/rude-love-f4536f333620/src/modules/timer/sdl/Timer.cpp",
+		"/home/finn/Documents/rude-love-f4536f333620/src/scripts/boot.lua.h",
+		"/media/usb/boot/bootinst.sh",
+		"/media/usb/forge/linux/README.txt",
+		"/media/usb/to arch/delta.txt",
+		"/media/usb/to arch/float to int.txt",
+		"/home/finn/Documents/rude-love-f4536f333620/src/modules/timer/sdl/Timer.h",
+		"/home/finn/Dropbox/Git_Repo/professional/game and program development/newPrototypes/space/space - love2D/main.lua",
+		"/home/finn/Documents/delta time.txt",
+		"/home/finn/Documents/C/curses/roguelike/main.c",
+		"/home/oldFinn/ubuntu 12.04 Home/Documents/twitch_stream.sh",
+		"/home/finn/Dropbox/Git_Repo/personal/code/C/stuff/numberVar test/main.c",
+		"/home/finn/Dropbox/Git_Repo/personal/code/lua/love tests/lineFunc/main.lua",
+		"/home/finn/Dropbox/Git_Repo/personal/code/QuackLang/QL_LANG/QL.sublime-project",
+		"/home/finn/Dropbox/Git_Repo/professional/game and program development/newPrototypes/botova/main.lua",
+		"/home/finn/Desktop/test.lua",
+		"/home/finn/.config/sublime-text-2/Packages/Python/Python.sublime-build",
+		"/home/finn/.config/sublime-text-2/Packages/Lua/lua.sublime-build",
+		"/home/finn/Dropbox/Git_Repo/personal/code/python/tk/pictureit/main.py",
+		"/home/finn/Dropbox/Git_Repo/personal/code/python/tk/pictureit/imgFunc.py",
+		"/home/finn/Dropbox/Git_Repo/personal/code/python/swissarmyknife.py",
+		"/home/finn/Dropbox/Git_Repo/personal/code/python/roguelike.py",
+		"/home/finn/Dropbox/Git_Repo/personal/code/python/loop inside a module.py",
+		"/home/finn/Dropbox/Git_Repo/personal/code/python/guessinggame.py",
+		"/home/finn/Dropbox/Git_Repo/personal/code/python/game_2.py",
+		"/home/finn/Dropbox/Git_Repo/personal/code/python/game.py",
+		"/home/finn/Dropbox/Git_Repo/personal/code/python/end test.py",
+		"/home/finn/Dropbox/Git_Repo/personal/code/python/testy.py",
+		"/home/finn/Dropbox/Git_Repo/personal/code/QuackLang/QL_LANG/Makefile",
+		"/home/finn/Dropbox/Git_Repo/personal/code/Java/Tyran9000/Makefile",
+		"/home/finn/Dropbox/Git_Repo/personal/code/Java/Tyran9000/main.java",
+		"/home/finn/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/finn/.config/sublime-text-2/Packages/User/Java.sublime-settings",
+		"/home/finn/Dropbox/Git_Repo/personal/code/Java/Tyran9000_java/Makefile",
+		"/home/finn/Dropbox/Git_Repo/personal/code/Java/Tyran9000_java/main.java",
+		"/home/finn/Dropbox/Git_Repo/personal/code/processing/Tyrant9000/Tyrant9000.pde",
+		"/home/finn/Dropbox/Git_Repo/personal/code/processing/Tyrant9000/Makefile",
+		"/home/finn/Dropbox/Git_Repo/personal/code/Java/Makefile",
+		"/home/finn/.config/sublime-text-2/Packages/Java/JavaC.sublime-build",
+		"/home/finn/Dropbox/Git_Repo/personal/code/Java/test.java",
+		"/home/finn/Dropbox/Git_Repo/personal/code/ASL/ASL_LANG/Makefile",
+		"/home/finn/Dropbox/Git_Repo/personal/games/love2D/networkingDemo/server_handle.lua",
+		"/home/finn/Dropbox/Git_Repo/personal/games/love2D/networkingDemo/server.lua",
+		"/home/finn/Dropbox/Git_Repo/personal/games/love2D/networkingDemo/client_connect.lua",
+		"/home/finn/Dropbox/Git_Repo/personal/games/love2D/networkingDemo/main.lua",
+		"/home/finn/Dropbox/Git_Repo/personal/code/lua/animals program/main.lua",
+		"/home/finn/Dropbox/Git_Repo/personal/code/lua/networking/server.lua",
+		"/home/finn/Dropbox/Git_Repo/professional/game and program development/newPrototypes/LD26/_mau/main.lua",
+		"/home/finn/Dropbox/Git_Repo/personal/code/lua/networking/serverExample.lua",
+		"/home/finn/Dropbox/Git_Repo/personal/code/AnjinScriptLang/README.md",
+		"/home/finn/Dropbox/S-Anjin/SoN/Codebase/AI-backToback.code",
+		"/home/finn/Dropbox/S-Anjin/SoN/Docs/Player AI Notepad.txt",
+		"/home/finn/Dropbox/S-Anjin/SoN/what is secret of nihilum.txt",
+		"/home/finn/Dropbox/S-Anjin/SoN/Player AI Notepad.txt",
+		"/home/finn/Dropbox/S-Anjin/SoN/Dir stucture.txt",
+		"/home/finn/Dropbox/Git_Repo/professional/game and program development/finished/Zombie_game/main.lua",
+		"/C/Users/Finn/Dropbox/Public/websites/Yet Another Indie Dev/misc/untitled",
+		"/home/finn/Dropbox/Public/websites/Yet Another Indie Dev/js/lightbox.js",
+		"/home/finn/Dropbox/Public/websites/Yet Another Indie Dev/js/arrays.js",
+		"/home/finn/Dropbox/Git_Repo/professional/game and program development/polyhedron design/code/sokoblobR3/main (Gallefray O'leary's conflicted copy 2013-05-20).lua",
+		"/home/finn/Dropbox/Git_Repo/professional/game and program development/polyhedron design/code/sokoblobR3/main.lua",
+		"/home/finn/.processing/preferences.txt",
+		"/home/finn/Dropbox/Git_Repo/professional/game and program development/polyhedron design/code/sokoblobR3/sokoblobR3.sublime-project",
+		"/home/finn/Dropbox/Git_Repo/professional/game and program development/polyhedron design/code/sokoblobR3/conf.lua",
+		"/home/finn/Dropbox/Git_Repo/professional/game and program development/newPrototypes/CHERUBgamePrototype/singlePlayerGameEng.lua",
+		"/home/finn/Dropbox/Git_Repo/professional/game and program development/newPrototypes/CHERUBgamePrototype/main.lua",
+		"/home/finn/Dropbox/Git_Repo/personal/code/lua/gam/main.lua",
+		"/home/finn/Dropbox/Git_Repo/personal/code/lua/untitled.lua",
+		"/home/finn/Dropbox/Git_Repo/professional/game and program development/polyhedron design/code/sokoblobR3/extString.lua",
+		"/home/finn/Dropbox/Git_Repo/professional/game and program development/polyhedron design/code/sokoblobR3/old/depCode.lua",
+		"/home/finn/Dropbox/Git_Repo/professional/game and program development/polyhedron design/code/sokoblobR3/DesignDoc.txt",
+		"/home/finn/Dropbox/Git_Repo/professional/game and program development/polyhedron design/code/sokoblobR3/LOG.txt",
+		"/home/finn/Dropbox/Git_Repo/professional/game and program development/polyhedron design/code/sokoblobR3/editSave.lua",
+		"/home/finn/Dropbox/Git_Repo/professional/game and program development/polyhedron design/code/sokoblobR3/editor.lua",
+		"/C/Documents and Settings/Finn/My Documents/Dropbox/Git_Repo/professional/game and program development/homebrewLibs/extString.lua",
+		"/home/finn/Dropbox/Git_Repo/professional/game and program development/polyhedron design/code/sokoblobR3/menu.lua",
+		"/C/Documents and Settings/Finn/Desktop/C.sublime-build",
+		"/C/Documents and Settings/Finn/My Documents/Dropbox/Git_Repo/professional/game and program development/polyhedron design/code/sokoblobR3/sokoblobR3.sublime-project",
+		"/C/Documents and Settings/Finn/My Documents/Dropbox/Git_Repo/professional/game and program development/polyhedron design/code/sokoblobR3/depCode.lua",
+		"/C/Documents and Settings/Finn/Desktop/ncursesTest.c",
+		"/C/Documents and Settings/Finn/Desktop/Files/roguelike.py/rogue-like.py",
+		"/C/Documents and Settings/Finn/Desktop/hello.rs",
+		"/C/Documents and Settings/Finn/My Documents/Dropbox/Git_Repo/professional/game and program development/polyhedron design/code/sokoblobR3/levels/user/1.lua",
+		"/C/Documents and Settings/Finn/My Documents/Dropbox/Git_Repo/professional/game and program development/polyhedron design/code/sokoblobR3/levels/user/2.lua",
+		"/C/Users/Finn/Dropbox/Git_Repo/professional/game and program development/polyhedron design/code/levels/user/1.lua",
+		"/C/Documents and Settings/Finn/Desktop/#ludumdareD&D.txt",
+		"/C/Documents and Settings/Finn/My Documents/Dropbox/Git_Repo/professional/game and program development/polyhedron design/code/sokoblobR3/version.lua",
+		"/C/clean/log/2012-07-21__14h06boot-repair04/2012-07-21__14h06.boot-repair.log.tee",
+		"/C/Users/Finn/Dropbox/Git_Repo/professional/game and program development/polyhedron design/code/sokoblobR3/sokoblobR3.sublime-workspace",
+		"/C/Documents and Settings/Finn/My Documents/Dropbox/Git_Repo/personal/lua/love tests/mkdirStuff/main.lua",
+		"/C/Documents and Settings/Finn/My Documents/Dropbox/Git_Repo/professional/game and program development/polyhedron design/code/sokoblobR3/editorBackup.lua",
+		"/C/Documents and Settings/Finn/My Documents/Dropbox/Git_Repo/personal/lua/tablesTest.lua",
+		"/C/Documents and Settings/Finn/My Documents/Dropbox/Git_Repo/personal/lua/helloWorld.lua",
+		"/C/FPC/2.6.0/bin/i386-win32/fpc.cfg",
+		"/C/Documents and Settings/Finn/My Documents/Dropbox/Git_Repo/professional/website design/Polyhedron Design/js/overlay.js",
+		"/home/finn/Dropbox/Git_Repo/professional/website design/Polyhedron Design/css/style.css",
+		"/home/finn/Dropbox/Git_Repo/professional/website design/Polyhedron Design/about.html",
+		"/home/finn/Dropbox/Git_Repo/professional/website design/Polyhedron Design/webdev.html",
+		"/home/finn/Dropbox/Git_Repo/professional/website design/Polyhedron Design/games_root.html",
+		"/home/finn/Dropbox/Git_Repo/professional/website design/Polyhedron Design/index.html",
+		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/Desktop/other stuff/gzdoom-bin-1-5-06/zdoom-Finn.ini",
+		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/Desktop/Desktop files/doomrl-win-0996-lq/doomrl-win-0996-lq/config.lua",
+		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/Dropbox/Git_Repo/professional/website design/tumblr like website/css/tumblr-styles.txt",
+		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/Dropbox/Git_Repo/professional/website design/tumblr like website/css/fonts.css",
+		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/GitHub/sokoblob/Lua/gridlocked player/main.lua",
+		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/Dropbox/Git_Repo/personal/lua/animals program/animals.lua",
+		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/Dropbox/Git_Repo/personal/lua/animals program/main.lua",
+		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/Desktop/gzdoom-bin-1-5-06/zdoom-Finn.ini",
+		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/Dropbox/Git_Repo/personal/lua/environment.lua",
+		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/Dropbox/Git_Repo/personal/animals program/animals.lua",
+		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/Dropbox/Git_Repo/personal/animals program/main.lua",
+		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/Dropbox/Git_Repo/personal/epicness.lua",
+		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/Dropbox/Git_Repo/professional/game and program development/Sokoblob/gridlocked player/main.lua",
+		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/Dropbox/Git_Repo/professional/game and program development/Sokoblob/gridlocked player/depracated_code_graveyard.lua",
+		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/Dropbox/Git_Repo/professional/game and program development/Sokoblob/gridlocked player/conf.lua",
+		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/Dropbox/Git_Repo/professional/game and program development/Sokoblob/gridlocked player/classes.lua",
+		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/Dropbox/Git_Repo/professional/game and program development/Sokoblob/gridlocked player/maps.lua"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"player",
+			"enemies",
+			"i",
+			"->",
+			"x",
+			"player.",
+			"player",
+			";\n",
+			"newBullet",
+			"player.bullets",
+			"player.bullets[player.bulletCount].",
+			"y ",
+			"y",
+			"player.bulletCount",
+			"bulletCount",
+			"enemy",
+			"player",
+			"2",
+			"x",
+			"0",
+			"gy",
+			"X",
+			"x",
+			"X",
+			"x",
+			"X",
+			"x",
+			"X",
+			"x",
+			"gcc",
+			"g",
+			"p",
+			"*",
+			", ",
+			"g",
+			"i",
+			"scr",
+			"screen",
+			"x",
+			"y",
+			"x",
+			"j",
+			"i",
+			" i",
+			"i",
+			"surface)",
+			"Surface",
+			"surface",
+			"surface-",
+			"Surface",
+			"surface",
+			"	y",
+			"y",
+			"x",
+			"y",
+			"h",
+			"\nint ",
+			"int",
+			"LM",
+			"true",
+			");\n",
+			"// Handled",
+			"-Werror",
+			"-fpic",
+			"-Werror",
+			"gcc",
+			"QLrand",
+			"rand",
+			"void",
+			"int",
+			"(int",
+			"size",
+			"double ",
+			" / scale",
+			";\n",
+			"//	",
+			"    ",
+			"        ",
+			"   ",
+			"        ",
+			"       ",
+			"      ",
+			"     ",
+			"    ",
+			"   ",
+			"int",
+			"double",
+			"\nint",
+			"int s",
+			"int",
+			"float",
+			"printf",
+			"1 -",
+			"32",
+			"scrTransX",
+			"../",
+			"../examples/test/",
+			"../bin/",
+			" += 1 * deltaTime",
+			"round",
+			"previousFPSUpdate",
+			"delta",
+			"FPSUpdateFreq",
+			"Cap",
+			"LastUpdate",
+			"Update",
+			"{\n",
+			"previousTime",
+			"time2",
+			"current",
+			"currentTime",
+			"time1",
+			"// // ",
+			"fpsUpdateFrequency",
+			"xl",
+			"y",
+			"Uint8",
+			"int",
+			"int ",
+			"x",
+			"xr",
+			"xl",
+			"x",
+			"int ",
+			"player.move.",
+			"x",
+			" += 1 * dt",
+			" -= 1 * dt"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"entity",
+			"player",
+			"plyer",
+			"entity"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "main.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7053,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5237,
+								5237
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3262.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "QL.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4586,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2835,
+								2835
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Makefile",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 360,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								360,
+								360
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1025,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1025,
+								1025
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<sorceress> 1. compute angle between two bearings",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": false,
+	"output.exec":
+	{
+		"height": 255.0
+	},
+	"project": ".rik0r.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"~/Dropbox/Git_Repo/personal/code/QuackLang/QL_LANG/QL.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
