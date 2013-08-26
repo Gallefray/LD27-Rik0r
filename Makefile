@@ -6,6 +6,6 @@ build forNT:
 
 #Compile for linux, increment the build number, then run it.
 build: main.c QL.h
-	gcc main.c -o rik0r -fpic ./libQL.so -lm -Wall -g 
+	gcc --std=c99 main.c -o rik0r -fpic ./libQL.so -lm -Wall -g 
 	./.incBuildNum
 	./rik0r

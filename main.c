@@ -1,13 +1,13 @@
 #include "QL.h"
 #include <string.h> // for memset
 
-// #defines
+// #defines -------------------------------------------------------------------- 
 #define maxAngle 360
 #define minAngle 0
 #define maxBullets 1500
 #define maxEnemy 20
 
-// Typedef structs & enums
+// Typedef structs & enums -----------------------------------------------------
 typedef struct 
 {
 	bool active;
@@ -37,12 +37,12 @@ typedef struct
 
 typedef struct
 {
-	int x, y;
-	int r;
-	char *type;
+	bool active;
+	int x, y, r;
+	int healthToGive; // self explanitory
 } powerup;
 
-// Function declarations, because -fpic.
+// Function declarations, because -fpic -------------------------------------------------------------------- 
 int main();
 void load();
 void draw();
@@ -51,34 +51,64 @@ void logic();
 bullet *GetNextAvailableBullet(); // Thanks to quin :3
 entity *GetNextAvailableEnemy(); // basically as above but for entities :3
 void genEnemy();
+void genPowerup();
+bool enemyAlive();
+void titleDraw();
+void titleUpdate();
+void breakDraw();
+void breakUpdate();
 
-// Variables
+// Variables ------------------------------------------------------------------ 
+int level; int levelScore = 0; int enemyScore = 0; int deathScore = 0;
 entity player;
-int enemyCount;
 entity enemies[maxEnemy];
-
+powerup OneUp;
+img menuScreen;
+img breakScreen;
 bool fullscreen = false;
 
+// -------------------------------------------------------------------- 
 int main(int argc, char *argv[])
 {
-	// if ((strcmp(argv[1], "-full")) == 0)
-	// {
-	// 	fullscreen = true;
-	// }
+	menuScreen = loadImage("./res/menu.bmp", BMP);
+	breakScreen = loadImage("./res/break.bmp", BMP);
+	if ((strcmp(argv[2], "full")) == 0)
+	{
+		fullscreen = true;
+	}
 	initWindow(1024, 768, fullscreen, "Rik0r");
+	printf("blop");
 	load();
+	printf("sqleeeerg");
 	while(keyInput.ESC != true)
 	{
+		printf("quloppity quop");
 		clear();
-		draw();
-		update();
-		controls();
-		logic();
+		if (level == 0)
+		{
+			printf("plop!");
+			titleDraw();
+			printf("bleaugh");
+			titleUpdate();
+		}
+		else if (level > 0)
+		{
+			draw();
+			update();
+			controls();
+			logic();
+		}
+		else if (level == -1) // This is the bit inbetween the levels
+		{
+			breakDraw();
+			breakUpdate();
+		}
 		capFrameRate(60); // 60 FPS
 	}
 	return 0;
 }
 
+// loading variables -------------------------------------------------------------------- 
 void load()
 {
 	player.x = scrWidth/2;
@@ -88,10 +118,84 @@ void load()
 	player.gunAngle = 20.0;
 	player.gunRad = 40;
 	player.sheilds = -1;
-	genEnemy();
-	genEnemy();
 }
 
+// boilerplate code -------------------------------------------------------------------- 
+bullet *GetNextAvailableBullet()
+{
+	int i;
+	for(i = 0; i < maxBullets; i++) 
+	{ 
+		if (player.bullets[i].active) 
+		{
+			continue;
+		}
+		return player.bullets + i;
+	} 
+	return NULL;
+}
+
+entity *GetNextAvailableEnemy()
+{
+	int i;
+	for(i = 0; i < maxEnemy; i++) 
+	{ 
+		if (enemies[i].active) 
+		{
+			continue;
+		}
+		return enemies + i;
+	} 
+	return NULL;
+}
+
+
+void genEnemy()
+{
+	entity *newEnemy = GetNextAvailableEnemy(); 
+
+	newEnemy->active = true; 
+	newEnemy->r = 30;
+	newEnemy->x = randomNum(0, scrWidth - newEnemy->r);
+	newEnemy->y = randomNum(0, scrHeight - newEnemy->r);
+	newEnemy->moveSpeed = randomNum(3, 6);
+	newEnemy->sheilds = -1;
+	newEnemy->targetAngle = giveAngle(newEnemy->x, newEnemy->y, player.x, player.x);
+}
+
+void genPowerup()
+{
+	OneUp.active = true;
+	OneUp.x = scrWidth/2;
+	OneUp.y = scrHeight/2;
+	OneUp.r = 30;
+	OneUp.healthToGive = randomNum(50, 75);
+}
+
+bool enemyAlive()
+{
+	int i;
+	for (i = 0; i < maxEnemy; i++)
+	{
+		if (enemies[i].active) 
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void loadNextLevel()
+{
+	level++;
+	int i;
+	for (i = 0; i <= level; i++)
+	{
+		genEnemy();
+	}
+}
+
+// mainGame -------------------------------------------------------------------- 
 void draw()
 {
 	setColour(abs(-player.sheilds), player.sheilds, 0, 255);
@@ -100,15 +204,12 @@ void draw()
 	circle("line", player.gunX, player.gunY, 3);
 	int i;
 	// enemy drawing
-	for (i = 0; i <= enemyCount; i++)
+	for (i = 0; i <= maxEnemy; i++)
 	{
 		if (enemies[i].active == true)
 		{
 			setColour(abs(-enemies[i].sheilds), enemies[i].sheilds, 0, 255);
 			circle("line", enemies[i].x, enemies[i].y, enemies[i].r);
-			setColour(255, 255, 255, 255);
-			circle("line", enemies[i].gunX, enemies[i].gunY, 3);
-			printf("Sheilds: %i\n", enemies[i].sheilds);
 		}
 	}
 	// player bullets :3
@@ -160,20 +261,20 @@ void controls() // Some input lag as such, but nothing game breaking yet :S
 		newBullet->origY = player.gunY;
 		newBullet->moveR = 0;
 		// rand stuff to allow variance in the bullets :3
-		int chance = randomNum(0, 6);
-		int variation = randomNum(1, 20); // 10 looks nice 
+		int chance = randomNum(0, 8);
+		int variation = randomNum(6, 20); // 10 looks nice 
 		switch (chance)
 		{
 			case 0:
 				newBullet->angle = player.gunAngle;
 				break;
 
-			case 1 : case 3 : case 5:
+			case 1 : case 3 : case 5: case 7:
 				newBullet->angle = player.gunAngle;
 				newBullet->angle += variation;
 				break;
 
-			case 2 : case 4 : case 6:
+			case 2 : case 4 : case 6: case 8:
 				newBullet->angle = player.gunAngle;
 				newBullet->angle -= variation;
 				break;
@@ -193,7 +294,7 @@ void logic()
 	player.gunX = cos(degreesToRadians(player.gunAngle))*player.gunRad + player.x;
 	player.gunY = sin(degreesToRadians(player.gunAngle))*player.gunRad + player.y;
 
-	int i; // movinf the player's bullets :3
+	int i; // moving the player's bullets :3
 	int j;
 	for (i = 0; i < maxBullets; i++)
 	{
@@ -209,7 +310,14 @@ void logic()
 		}
 	}
 
-	for (i = 0; i < maxEnemy; i++) // Enemies
+	// Player death
+	if (player.sheilds < -256)
+	{
+		// Cut to commertial:
+	}
+
+	// Enemies
+	for (i = 0; i < maxEnemy; i++) 
 	{
 		if (enemies[i].active == true)
 		{
@@ -222,12 +330,15 @@ void logic()
 				player.sheilds--; player.sheilds--;
 				enemies[i].sheilds--;
 			}
-			if (enemies[i].sheilds <= -256) // player death
+			// enemy death
+			if (enemies[i].sheilds <= -256)
 			{
 				enemies[i].active = false;
+				enemyScore++;
 			}
+			// player bullets - enemy collision
 			int xDelta, yDelta;
-			for (j = 0; j < maxBullets; j++) // player bullets - enemy collision
+			for (j = 0; j < maxBullets; j++)
 			{
 				if (player.bullets[j].active == true)
 				{
@@ -242,67 +353,125 @@ void logic()
 			}
 			// get the player's angle:
 			enemies[i].targetAngle = giveAngle(enemies[i].x, enemies[i].y, player.x, player.y);
-			// // Move the gun to the player:
-			// double dif = enemies[i].targetAngle - enemies[i].gunAngle;
-			// int turnDir = dif > 0 ? (dif > Tau/2 ? 1:-1) : (dif >= -Tau/2 ? 1:-1);
-			// double rot = 6*turnDir;
-			// if (abs(enemies[i].targetAngle - (enemies[i].gunAngle + rot) <= abs(rot)))
-			// { 
-			// 	enemies[i].gunAngle = enemies[i].targetAngle; 
-			// }
-			// else
-			// { 
-			// 	enemies[i].gunAngle += rot;
-			// }
-			// enemies[i].gunX = cos(degreesToRadians(enemies[i].gunAngle))*enemies[i].gunRad + enemies[i].x;
-			// enemies[i].gunY = sin(degreesToRadians(enemies[i].gunAngle))*enemies[i].gunRad + enemies[i].y;
+			// Move the enemy to the player
+			int *x = &enemies[i].x; // Pointers FTW!!!!
+			int *y = &enemies[i].y;
+			float targ = enemies[i].targetAngle;
+			int speed = enemies[i].moveSpeed;
+			*x = cos(targ) * speed/1.1 + *x; // sine and cosine are awesome :3
+			*y = sin(targ) * speed/1.1 + *y;
+		}
+	}
+
+	if (enemyAlive() == false)
+	{
+		level = -1;
+		levelScore++;
+		genPowerup();
+	}
+}
+
+// title -------------------------------------------------------------------- 
+
+void titleDraw()
+{
+	drawImage(menuScreen, 0, 0);
+}
+
+void titleUpdate()
+{
+	if (keyInput.p)
+	{
+		loadNextLevel();
+	}
+}
+
+// break -------------------------------------------------------------------- 
+
+void breakDraw()
+{
+	drawImage(breakScreen, 0, 0);
+	setColour(abs(-player.sheilds), player.sheilds, 0, 255);
+	circle("line", player.x, player.y, player.r);
+	setColour(255, 255, 255, 255);
+	circle("line", player.gunX, player.gunY, 3);
+	// player bullets :3
+	setColour(200, 50, 0, 255);
+	int i;
+	for (i = 0; i <= maxBullets; i++)
+	{
+		if (player.bullets[i].active == true)
+		{
+			pixel(player.bullets[i].x, player.bullets[i].y);
 		}
 	}
 }
 
-bullet *GetNextAvailableBullet()
+void breakUpdate()
 {
-	int i;
-	for(i = 0; i < maxBullets; i++) 
-	{ 
-		if (player.bullets[i].active) 
+	// Player movement:
+	if (keyInput.a)
+	{
+		player.x -= player.moveSpeed;
+	}
+	if (keyInput.d)
+	{
+		player.x += player.moveSpeed;
+	}
+	if (keyInput.w)
+	{
+		player.y -= player.moveSpeed;
+	}
+	if (keyInput.s)
+	{
+		player.y += player.moveSpeed;
+	}
+	// Player gun movement:
+	if (keyInput.left)
+	{
+		player.gunAngle -= 6;
+	}
+	if (keyInput.right)
+	{
+		player.gunAngle += 6;
+	}
+	if (keyInput.spacebar)
+	{
+		bullet *newBullet = GetNextAvailableBullet(); 
+
+		newBullet->active = true; 
+		newBullet->origX = player.gunX;
+		newBullet->origY = player.gunY;
+		newBullet->moveR = 0;
+		// rand stuff to allow variance in the bullets :3
+		int chance = randomNum(0, 8);
+		int variation = randomNum(6, 20); // 10 looks nice 
+		switch (chance)
 		{
-			continue;
+			case 0:
+				newBullet->angle = player.gunAngle;
+				break;
+
+			case 1 : case 3 : case 5: case 7:
+				newBullet->angle = player.gunAngle;
+				newBullet->angle += variation;
+				break;
+
+			case 2 : case 4 : case 6: case 8:
+				newBullet->angle = player.gunAngle;
+				newBullet->angle -= variation;
+				break;
+
+			default:
+				break;
 		}
-		return player.bullets + i;
-	} 
-	return NULL;
-}
-
-entity *GetNextAvailableEnemy()
-{
-	int i;
-	for(i = 0; i < maxEnemy; i++) 
-	{ 
-		if (enemies[i].active) 
-		{
-			continue;
-		}
-		return enemies + i;
-	} 
-	return NULL;
-}
-
-void genEnemy()
-{
-	entity *newEnemy = GetNextAvailableEnemy(); 
-
-	newEnemy->active = true; 
-	newEnemy->r = 30;
-	newEnemy->x = randomNum(0, scrWidth - newEnemy->r);
-	newEnemy->y = randomNum(0, scrHeight - newEnemy->r);
-	newEnemy->moveSpeed = randomNum(4, 6);
-	// newEnemy->gunRad = 40;
-	// newEnemy->gunAngle = degreesToRadians(randomNum(0, 359));
-	newEnemy->sheilds = -1;
-	// newEnemy->gunX = cos(newEnemy->gunAngle)*newEnemy->gunRad + newEnemy->x;
-	// newEnemy->gunY = sin(newEnemy->gunAngle)*newEnemy->gunRad + newEnemy->y;
-
-	newEnemy->targetAngle = giveAngle(newEnemy->x, newEnemy->y, player.x, player.x);
-
+		newBullet->speed = randomNum(20, 40);
+		newBullet->x = cos(degreesToRadians(newBullet->angle))*newBullet->moveR + newBullet->origX;
+		newBullet->y = sin(degreesToRadians(newBullet->angle))*newBullet->moveR + newBullet->origY;
+	}
+	if (keyInput.e)
+	{
+		level = levelScore;
+		loadNextLevel();
+	}
 }

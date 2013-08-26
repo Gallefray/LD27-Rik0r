@@ -4,8 +4,80 @@
 		"selected_items":
 		[
 			[
+				"brea",
+				"breakScreen"
+			],
+			[
+				"tt",
+				"titleUpdate"
+			],
+			[
+				"tit",
+				"titleDraw"
+			],
+			[
+				"load",
+				"loadNextLevel"
+			],
+			[
+				"menu",
+				"menuScreen"
+			],
+			[
+				"draw",
+				"drawImage"
+			],
+			[
+				"TIT",
+				"titleDraw"
+			],
+			[
+				"break",
+				"breakScreen"
+			],
+			[
+				"leve",
+				"loadNextLevel"
+			],
+			[
+				"bre",
+				"breakUpdate"
+			],
+			[
+				"gen",
+				"genPowerup"
+			],
+			[
+				"dea",
+				"deathScore"
+			],
+			[
+				"level",
+				"levelScore"
+			],
+			[
+				"ene",
+				"enemyScore"
+			],
+			[
+				"enem",
+				"enemy"
+			],
+			[
+				"enemy",
+				"enemyAlive"
+			],
+			[
+				"scr",
+				"scrHeight"
+			],
+			[
 				"max",
-				"maxAngle"
+				"maxEnemy"
+			],
+			[
+				"tar",
+				"targetAngle"
 			],
 			[
 				"rad",
@@ -16,20 +88,8 @@
 				"gunAngle"
 			],
 			[
-				"enem",
-				"enemies"
-			],
-			[
-				"ene",
-				"enemies"
-			],
-			[
 				"gu",
 				"gunAngle"
-			],
-			[
-				"scr",
-				"scrWidth"
 			],
 			[
 				"orig",
@@ -66,10 +126,6 @@
 			[
 				"move",
 				"moveRadius"
-			],
-			[
-				"tar",
-				"targY"
 			],
 			[
 				"org",
@@ -364,10 +420,6 @@
 				"convBelt"
 			],
 			[
-				"enemy",
-				"enemy"
-			],
-			[
 				"print",
 				"printF"
 			],
@@ -462,58 +514,6 @@
 			[
 				"gr",
 				"Graphics"
-			],
-			[
-				"sl",
-				"slipperyness"
-			],
-			[
-				"grid",
-				"grid_y"
-			],
-			[
-				"di",
-				"dist"
-			],
-			[
-				"bo",
-				"boxCollide"
-			],
-			[
-				"else",
-				"elseif"
-			],
-			[
-				"anom",
-				"anomaly1"
-			],
-			[
-				"ano",
-				"anomaly1"
-			],
-			[
-				"dire",
-				"direction"
-			],
-			[
-				"lo",
-				"love"
-			],
-			[
-				"coll",
-				"playerCollide"
-			],
-			[
-				"fun",
-				"function	function"
-			],
-			[
-				"act",
-				"act_y"
-			],
-			[
-				"gri",
-				"grid_y"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "main.c",
 			"settings":
 			{
-				"buffer_size": 7172,
+				"buffer_size": 10425,
 				"line_ending": "Unix"
 			}
 		},
@@ -531,7 +531,7 @@
 			"file": "Makefile",
 			"settings":
 			{
-				"buffer_size": 360,
+				"buffer_size": 370,
 				"line_ending": "Unix"
 			}
 		},
@@ -729,6 +729,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"exists",
+			"1up",
 			"targetAngle",
 			"enemies[i",
 			"player",
@@ -854,9 +856,7 @@
 			"xr",
 			"xl",
 			"x",
-			"int ",
-			"player.move.",
-			"x"
+			"int "
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -887,24 +887,26 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7172,
+						"buffer_size": 10425,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5698,
-								5698
+								16,
+								16
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/C++/C.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"translate_tabs_to_spaces": false,
+							"word_wrap": true,
+							"wrap_width": 100
 						},
 						"translation.x": 0.0,
-						"translation.y": 3220.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -915,15 +917,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 360,
+						"buffer_size": 370,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								203,
-								203
+								108,
+								108
 							]
 						],
 						"settings":
@@ -935,13 +937,7 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
+				},
 				{
 					"buffer": 2,
 					"file": "QL.h",
@@ -955,8 +951,8 @@
 						"selection":
 						[
 							[
-								0,
-								0
+								4758,
+								4758
 							]
 						],
 						"settings":
@@ -965,7 +961,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 630.0,
+						"translation.y": 1412.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1017,18 +1013,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.77890625,
 			1.0
 		],
 		"rows":
