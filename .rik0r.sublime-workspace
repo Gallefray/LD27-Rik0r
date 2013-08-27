@@ -4,6 +4,54 @@
 		"selected_items":
 		[
 			[
+				"star",
+				"stars"
+			],
+			[
+				"move",
+				"moveRad"
+			],
+			[
+				"orig",
+				"origY"
+			],
+			[
+				"circ",
+				"pointCircleCollision"
+			],
+			[
+				"arg",
+				"argv"
+			],
+			[
+				"scr",
+				"scrWidth"
+			],
+			[
+				"ge",
+				"GetNextAvailableEnemy"
+			],
+			[
+				"enem",
+				"enemies"
+			],
+			[
+				"ene",
+				"enemies"
+			],
+			[
+				"gun",
+				"gunY"
+			],
+			[
+				"s",
+				"sheilds"
+			],
+			[
+				"max",
+				"maxBullets"
+			],
+			[
 				"brea",
 				"breakScreen"
 			],
@@ -56,24 +104,8 @@
 				"levelScore"
 			],
 			[
-				"ene",
-				"enemyScore"
-			],
-			[
-				"enem",
-				"enemy"
-			],
-			[
 				"enemy",
 				"enemyAlive"
-			],
-			[
-				"scr",
-				"scrHeight"
-			],
-			[
-				"max",
-				"maxEnemy"
 			],
 			[
 				"tar",
@@ -84,16 +116,8 @@
 				"degreesToRadians"
 			],
 			[
-				"gun",
-				"gunAngle"
-			],
-			[
 				"gu",
 				"gunAngle"
-			],
-			[
-				"orig",
-				"origX"
 			],
 			[
 				"bull",
@@ -122,10 +146,6 @@
 			[
 				"def",
 				"define"
-			],
-			[
-				"move",
-				"moveRadius"
 			],
 			[
 				"org",
@@ -494,26 +514,6 @@
 			[
 				"box",
 				"box1"
-			],
-			[
-				"curr",
-				"currentLevel"
-			],
-			[
-				"ice",
-				"iceentitycollide"
-			],
-			[
-				"en",
-				"entity-__"
-			],
-			[
-				"mo",
-				"movespeed"
-			],
-			[
-				"gr",
-				"Graphics"
 			]
 		]
 	},
@@ -521,6 +521,25 @@
 	[
 		{
 			"file": "main.c",
+			"settings":
+			{
+				"buffer_size": 5061,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "#include \"QL.h\"\n\ntypedef struct \n{\n	int x, y;\n	int moveRad, moveSpeed, angle;\n	int origX, origY;\n} star;\n\n#define maxStars 1000\n\nstar stars[maxStars];\n\nvoid load()\n{\n	int i;\n	for (i = 0; i < maxStars; i++)\n	{\n		stars[i].origX = scrWidth/2;\n		stars[i].origY = scrHeight/2;\n		stars[i].moveRad = randomNum(5, 10);\n		stars[i].angle = degreesToRadians(randomNum(0, 360));\n		stars[i].moveSpeed = randomNum(2, 6);\n	}\n}\n\nvoid logic()\n{\n	int i;\n	for (i = 0; i < maxStars; i++)\n	{\n		stars[i].moveRad += stars[i].moveSpeed;\n		stars[i].x = cos(stars[i].angle)*stars[i].moveRad + stars[i].origX;\n		stars[i].y = sin(stars[i].angle)*stars[i].moveRad + stars[i].origY;\n		if (!rectRectCollision(stars))\n	}\n}\n\nint main(int argc, char *argv[])\n{\n	bool fullscreen = false;\n	if (argc == 2)\n	{\n		if (strcmp(argv[1], \"-full\") == 0)\n		{\n			fullscreen = true;\n		}\n	}\n	initWindow(1024, 768, fullscreen, \"Space!!! :D\");\n	load();\n	while (!keyInput.ESC)\n	{\n		clear();\n		int i;\n		for (i = 0; i < maxStars; i++)\n		{\n			pixel(stars[i].x, stars[i].y);\n		}\n		update();\n		logic();\n		capFrameRate(60);\n	}\n	return 0;\n}",
+			"file": "space.c",
+			"file_size": 1048,
+			"file_write_time": 130220380204875308,
+			"settings":
+			{
+				"buffer_size": 1081,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mainOld.c",
 			"settings":
 			{
 				"buffer_size": 10425,
@@ -531,7 +550,7 @@
 			"file": "Makefile",
 			"settings":
 			{
-				"buffer_size": 370,
+				"buffer_size": 362,
 				"line_ending": "Unix"
 			}
 		},
@@ -539,7 +558,7 @@
 			"file": "QL.h",
 			"settings":
 			{
-				"buffer_size": 4819,
+				"buffer_size": 4886,
 				"line_ending": "Unix"
 			}
 		},
@@ -584,6 +603,7 @@
 	},
 	"file_history":
 	[
+		"/home/finn/Dropbox/Git_Repo/personal/code/C/LD27/rik0r/mainOld.c",
 		"/home/finn/Dropbox/Git_Repo/personal/code/QuackLang/QL_LANG/QL.h",
 		"/home/finn/Dropbox/Git_Repo/personal/code/C/QuackLang Proj/galacticRift/main.c",
 		"/home/finn/Dropbox/Git_Repo/personal/code/QuackLang/QL_LANG/QL.c",
@@ -710,8 +730,7 @@
 		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/Dropbox/Git_Repo/professional/game and program development/Sokoblob/gridlocked player/main.lua",
 		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/Dropbox/Git_Repo/professional/game and program development/Sokoblob/gridlocked player/depracated_code_graveyard.lua",
 		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/Dropbox/Git_Repo/professional/game and program development/Sokoblob/gridlocked player/conf.lua",
-		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/Dropbox/Git_Repo/professional/game and program development/Sokoblob/gridlocked player/classes.lua",
-		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/Dropbox/Git_Repo/professional/game and program development/Sokoblob/gridlocked player/maps.lua"
+		"/C/Documents and Settings/Finn.BERNARD-H5B21OH/My Documents/Dropbox/Git_Repo/professional/game and program development/Sokoblob/gridlocked player/classes.lua"
 	],
 	"find":
 	{
@@ -729,6 +748,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"degreesToRadians(",
+			"gunPosR",
+			"gun",
+			">angle",
+			"Angle",
+			"angle",
 			"exists",
 			"1up",
 			"targetAngle",
@@ -850,13 +875,7 @@
 			"xl",
 			"y",
 			"Uint8",
-			"int",
-			"int ",
-			"x",
-			"xr",
-			"xl",
-			"x",
-			"int "
+			"int"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -878,12 +897,67 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
 					"file": "main.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5061,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4785,
+								4785
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2386.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "space.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1081,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								683,
+								683
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 135.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "mainOld.c",
 					"semi_transient": false,
 					"settings":
 					{
@@ -894,38 +968,36 @@
 						"selection":
 						[
 							[
-								16,
-								16
+								7670,
+								7670
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": true,
-							"wrap_width": 100
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 4747.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 1,
+					"buffer": 3,
 					"file": "Makefile",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 370,
+						"buffer_size": 362,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								108,
-								108
+								306,
+								306
 							]
 						],
 						"settings":
@@ -939,20 +1011,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 4,
 					"file": "QL.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4819,
+						"buffer_size": 4886,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4758,
-								4758
+								3096,
+								3096
 							]
 						],
 						"settings":
@@ -961,13 +1033,13 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1412.0,
+						"translation.y": 932.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 5,
 					"semi_transient": false,
 					"settings":
 					{
@@ -1068,7 +1140,7 @@
 	"settings":
 	{
 	},
-	"show_minimap": false,
+	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,

@@ -86,6 +86,7 @@ float signf(float num); // as above but for floating point numbers
 // QLcollisionHand:
 bool rectRectCollision(int Ax, int Ay, int Ah, int Aw, int Bx, int By, int Bh, int Bw); // Returns true if a collision is detected
 bool circleCircleCollision(int Ax, int Ay, int Ar, int Bx, int By, int Br);
+bool pointCircleCollision(int pX, int pY, int cX, int cY, int cR);
 
 // QLinput:
 void grabInput();
