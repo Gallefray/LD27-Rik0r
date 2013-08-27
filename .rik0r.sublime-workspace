@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"scr",
+				"scrHeight"
+			],
+			[
 				"star",
 				"stars"
 			],
@@ -22,10 +26,6 @@
 			[
 				"arg",
 				"argv"
-			],
-			[
-				"scr",
-				"scrWidth"
 			],
 			[
 				"ge",
@@ -520,7 +520,10 @@
 	"buffers":
 	[
 		{
+			"contents": "#include \"QL.h\"\n\n#define maxBullets 10000\n#define maxEnemy 20\n\ntypedef struct\n{\n	bool active;\n	int x, y;\n	float moveAng; int moveRad;\n	int moveSpeed;\n	int origX, origY;\n} bullet;\n\ntypedef struct\n{\n	bool active;\n	int x, y, r;\n	int gunX, gunY, gunR;\n	float gunAngle;\n	int moveSpeed;\n	int sheilds;\n	bullet bullets[maxBullets];\n} hero;\n\ntypedef struct\n{\n	bool active;\n	int x, y, r;\n	float targAngle, moveAngle;\n	int moveSpeed;\n	int sheilds;\n} zomb;\n\ntypedef struct\n{\n	bool active;\n	int x, y, r;\n	int repair;\n} powerUp;\n\nint level = 1;\nhero player;\nzomb enemies[maxEnemy];\n\nbullet *GetNextAvailableBullet()\n{\n	int i;\n	for(i = 0; i < maxBullets; i++) \n	{ \n		if (player.bullets[i].active) \n		{\n			continue;\n		}\n		return player.bullets + i;\n	} \n	return NULL;\n}\n\nzomb *GetNextAvailableEnemy()\n{\n	int i;\n	for(i = 0; i < maxEnemy; i++) \n	{ \n		if (enemies[i].active) \n		{\n			continue;\n		}\n		return enemies + i;\n	} \n	return NULL;\n}\n\nvoid load()\n{\n	player.x = scrWidth/2;\n	player.y = scrHeight/2;\n	player.r = 30;\n	player.moveSpeed = 6;\n	player.sheilds = -1;\n\n	player.gunR = 40;\n}\n\nvoid genEnemy()\n{\n	zomb *newEnemy = GetNextAvailableEnemy();\n\n	newEnemy->r = 30;\n	newEnemy->x = randomNum(0+newEnemy->r, scrWidth-newEnemy->r);\n	newEnemy->y = randomNum(0+newEnemy->r, scrHeight-newEnemy->r);\n	newEnemy->sheilds = -1;\n}\n\nvoid draw()\n{\n	setColour(abs(-player.sheilds), player.sheilds, 0, 255);\n	circle(\"line\", player.x, player.y, player.r);\n	setColour(255, 255, 255, 255);\n	circle(\"line\", player.gunX, player.gunY, 3.5);\n\n\n	int i; \n	// bullets\n	for (i = 0; i <= maxBullets; i++)\n	{\n		if (player.bullets[i].active == true)\n		{\n			setColour(255, 255, 0, 0);\n			pixel(player.bullets[i].x, player.bullets[i].y);\n		}\n	}\n}\n\nvoid logic()\n{\n	player.gunX = cos(player.gunAngle)*player.gunR + player.x;\n	player.gunY = sin(player.gunAngle)*player.gunR + player.y;\n\n	int i;\n	for (i = 0; i < maxBullets; i++)\n	{\n		if (player.bullets[i].active)\n		{\n			player.bullets[i].moveRad += player.bullets[i].moveSpeed;\n			player.bullets[i].x = cos(player.bullets[i].moveAng)*player.bullets[i].moveRad + player.bullets[i].origX;\n			player.bullets[i].y = sin(player.bullets[i].moveAng)*player.bullets[i].moveRad + player.bullets[i].origY;\n\n			if (player.bullets[i].y > scrHeight || player.bullets[i].y < 0 || player.bullets[i].x > scrWidth || player.bullets[i].x < 0)\n			{\n				player.bullets[i].active = false;\n			}\n		}\n	}\n\n	for (i = 0; i < maxEnemy; i++)\n	{\n		if (enemies[i].active)\n		{\n			// Bullet - enemy collisions\n			int j;\n			for (j = 0; j < maxBullets; j++)\n			{\n				if (player.bullets[j].active)\n				{\n					if (pointCircleCollision(player.bullets[j].x, player.bullets[j].y, enemies[i].x, enemies[i].y, enemies[i].r))\n					{\n						enemies[i].sheilds--;\n						player.bullets[j].active = false;\n					}\n				}\n			}\n\n			if (circleCircleCollision(player.x, player.y, player.r, enemies[i].x, enemies[i].y, enemies[i].r))\n			{\n				player.sheilds -= 2;\n				enemies[i].sheilds--;\n			}\n\n			if (enemies[i].sheilds <= -256)\n			{\n				enemies[i].active = false;\n			}\n\n			enemies[i].targAngle = giveAngle(enemies[i].x, enemies[i].y, player.x, player.y);\n			enemies[i].x = cos(enemies[i].targAngle)*enemies[i].moveSpeed + enemies[i].x;\n			enemies[i].y = sin(enemies[i].targAngle)*enemies[i].moveSpeed + enemies[i].y;\n		}\n	}\n}\n\nvoid controls()\n{\n	if (keyInput.a)\n	{\n		player.x -= player.moveSpeed;\n	}\n	if (keyInput.d)\n	{\n		player.x += player.moveSpeed;\n	}\n	if (keyInput.w)\n	{\n		player.y -= player.moveSpeed;\n	}\n	if (keyInput.s)\n	{\n		player.y += player.moveSpeed;\n	}\n\n	if (keyInput.left)\n	{\n		player.gunAngle -= 0.1;\n	}\n	else if (keyInput.right)\n	{\n		player.gunAngle += 0.1;\n	}\n\n	if (keyInput.spacebar)\n	{\n		bullet *newBullet = GetNextAvailableBullet();\n		newBullet->active = true;\n		newBullet->origX = player.gunX;\n		newBullet->origY = player.gunY;\n		newBullet->moveRad = 0;\n\n		int variation, chance;\n		chance = randomNum(0, 8);\n		variation = randomNum(5, 20);\n		switch (chance)\n		{\n			case 0:\n				newBullet->moveAng = player.gunAngle;\n				break;\n			case 1: case 3: case 5: case 7:\n				newBullet->moveAng = player.gunAngle;\n				newBullet->moveAng -= degreesToRadians(variation);\n				break;\n			case 2: case 4: case 6: case 8:\n				newBullet->moveAng = player.gunAngle;\n				newBullet->moveAng += degreesToRadians(variation);\n				break;\n		}\n		newBullet->moveSpeed = randomNum(2, 4);\n		newBullet->x = cos(newBullet->moveAng)*newBullet->moveRad + newBullet->origX;\n		newBullet->y = sin(newBullet->moveAng)*newBullet->moveRad + newBullet->origY;\n	}\n}\n\nint main(int argc, char *argv[])\n{\n	bool fullscreen = false;\n	if (argc == 2)\n	{\n		if (strcmp(argv[1], \"-full\") == 0)\n		{\n			fullscreen = true;\n		}\n	}\n	initWindow(1024, 768, fullscreen, \"test :3\");\n	load();\n	img menuScreen = loadImage(\"./res/menu.bmp\", BMP);\n	while (!keyInput.ESC)\n	{\n		clear();\n		if (level == -1) // death screen\n		{\n\n		}\n		else if (level == 0 ) // menu\n		{\n			drawImage(menuScreen, 2, 2);\n			update();\n			capFrameRate(60);\n		}\n		else if (level > 0) // game\n		{\n			draw();\n			update();\n			controls();\n			logic();\n			capFrameRate(60);\n		}\n	}\n	return 0;\n}",
 			"file": "main.c",
+			"file_size": 5061,
+			"file_write_time": 130220276035119595,
 			"settings":
 			{
 				"buffer_size": 5061,
@@ -528,18 +531,27 @@
 			}
 		},
 		{
-			"contents": "#include \"QL.h\"\n\ntypedef struct \n{\n	int x, y;\n	int moveRad, moveSpeed, angle;\n	int origX, origY;\n} star;\n\n#define maxStars 1000\n\nstar stars[maxStars];\n\nvoid load()\n{\n	int i;\n	for (i = 0; i < maxStars; i++)\n	{\n		stars[i].origX = scrWidth/2;\n		stars[i].origY = scrHeight/2;\n		stars[i].moveRad = randomNum(5, 10);\n		stars[i].angle = degreesToRadians(randomNum(0, 360));\n		stars[i].moveSpeed = randomNum(2, 6);\n	}\n}\n\nvoid logic()\n{\n	int i;\n	for (i = 0; i < maxStars; i++)\n	{\n		stars[i].moveRad += stars[i].moveSpeed;\n		stars[i].x = cos(stars[i].angle)*stars[i].moveRad + stars[i].origX;\n		stars[i].y = sin(stars[i].angle)*stars[i].moveRad + stars[i].origY;\n		if (!rectRectCollision(stars))\n	}\n}\n\nint main(int argc, char *argv[])\n{\n	bool fullscreen = false;\n	if (argc == 2)\n	{\n		if (strcmp(argv[1], \"-full\") == 0)\n		{\n			fullscreen = true;\n		}\n	}\n	initWindow(1024, 768, fullscreen, \"Space!!! :D\");\n	load();\n	while (!keyInput.ESC)\n	{\n		clear();\n		int i;\n		for (i = 0; i < maxStars; i++)\n		{\n			pixel(stars[i].x, stars[i].y);\n		}\n		update();\n		logic();\n		capFrameRate(60);\n	}\n	return 0;\n}",
 			"file": "space.c",
-			"file_size": 1048,
-			"file_write_time": 130220380204875308,
 			"settings":
 			{
-				"buffer_size": 1081,
+				"buffer_size": 1279,
 				"line_ending": "Unix"
 			}
 		},
 		{
+			"file": "README",
+			"settings":
+			{
+				"buffer_size": 227,
+				"line_ending": "Unix",
+				"name": "Space!!! :D"
+			}
+		},
+		{
+			"contents": "#include \"QL.h\"\n#include <string.h> // for memset\n\n// #defines -------------------------------------------------------------------- \n#define maxAngle 360\n#define minAngle 0\n#define maxBullets 1500\n#define maxEnemy 20\n\n// Typedef structs & enums -----------------------------------------------------\ntypedef struct \n{\n	bool active;\n	// moving:\n	int origX, origY, x, y;\n	int moveR;\n	float angle;\n	int speed;\n	// damage is directly in realtion to the size of the bullet.\n} bullet;\n\ntypedef struct\n{\n	bool active; // only applicable for enemies :3\n	// moving:\n	int x, y, r; // x, y, radius\n	int moveSpeed; // Move speed\n	// gun:\n	int gunX, gunY, gunRad; // gun x, y, radius\n	float gunAngle; // gun angle\n	float targetAngle; // For the enemy, the angle of the player in relation to the enemy :3\n	bullet bullets[maxBullets]; // array for the bullets\n	// health:\n	int sheilds;\n	// int r, g;\n} entity;\n\ntypedef struct\n{\n	bool active;\n	int x, y, r;\n	int healthToGive; // self explanitory\n} powerup;\n\n// Function declarations, because -fpic -------------------------------------------------------------------- \nint main();\nvoid load();\nvoid draw();\nvoid controls();\nvoid logic();\nbullet *GetNextAvailableBullet(); // Thanks to quin :3\nentity *GetNextAvailableEnemy(); // basically as above but for entities :3\nvoid genEnemy();\nvoid genPowerup();\nbool enemyAlive();\nvoid titleDraw();\nvoid titleUpdate();\nvoid breakDraw();\nvoid breakUpdate();\n\n// Variables ------------------------------------------------------------------ \nint level; int levelScore = 0; int enemyScore = 0; int deathScore = 0;\nentity player;\nentity enemies[maxEnemy];\npowerup OneUp;\nimg menuScreen;\nimg breakScreen;\nbool fullscreen = false;\n\n// -------------------------------------------------------------------- \nint main(int argc, char *argv[])\n{\n	menuScreen = loadImage(\"./res/menu.bmp\", BMP);\n	breakScreen = loadImage(\"./res/break.bmp\", BMP);\n	if ((strcmp(argv[2], \"full\")) == 0)\n	{\n		fullscreen = true;\n	}\n	initWindow(1024, 768, fullscreen, \"Rik0r\");\n	printf(\"blop\");\n	load();\n	printf(\"sqleeeerg\");\n	while(keyInput.ESC != true)\n	{\n		printf(\"quloppity quop\");\n		clear();\n		if (level == 0)\n		{\n			printf(\"plop!\");\n			titleDraw();\n			printf(\"bleaugh\");\n			titleUpdate();\n		}\n		else if (level > 0)\n		{\n			draw();\n			update();\n			controls();\n			logic();\n		}\n		else if (level == -1) // This is the bit inbetween the levels\n		{\n			breakDraw();\n			breakUpdate();\n		}\n		capFrameRate(60); // 60 FPS\n	}\n	return 0;\n}\n\n// loading variables -------------------------------------------------------------------- \nvoid load()\n{\n	player.x = scrWidth/2;\n	player.y = scrHeight/2;\n	player.r = 30;\n	player.moveSpeed = 4;\n	player.gunAngle = 20.0;\n	player.gunRad = 40;\n	player.sheilds = -1;\n}\n\n// boilerplate code -------------------------------------------------------------------- \nbullet *GetNextAvailableBullet()\n{\n	int i;\n	for(i = 0; i < maxBullets; i++) \n	{ \n		if (player.bullets[i].active) \n		{\n			continue;\n		}\n		return player.bullets + i;\n	} \n	return NULL;\n}\n\nentity *GetNextAvailableEnemy()\n{\n	int i;\n	for(i = 0; i < maxEnemy; i++) \n	{ \n		if (enemies[i].active) \n		{\n			continue;\n		}\n		return enemies + i;\n	} \n	return NULL;\n}\n\n\nvoid genEnemy()\n{\n	entity *newEnemy = GetNextAvailableEnemy(); \n\n	newEnemy->active = true; \n	newEnemy->r = 30;\n	newEnemy->x = randomNum(0, scrWidth - newEnemy->r);\n	newEnemy->y = randomNum(0, scrHeight - newEnemy->r);\n	newEnemy->moveSpeed = randomNum(3, 6);\n	newEnemy->sheilds = -1;\n	newEnemy->targetAngle = giveAngle(newEnemy->x, newEnemy->y, player.x, player.x);\n}\n\nvoid genPowerup()\n{\n	OneUp.active = true;\n	OneUp.x = scrWidth/2;\n	OneUp.y = scrHeight/2;\n	OneUp.r = 30;\n	OneUp.healthToGive = randomNum(50, 75);\n}\n\nbool enemyAlive()\n{\n	int i;\n	for (i = 0; i < maxEnemy; i++)\n	{\n		if (enemies[i].active) \n		{\n			return true;\n		}\n	}\n	return false;\n}\n\nvoid loadNextLevel()\n{\n	level++;\n	int i;\n	for (i = 0; i <= level; i++)\n	{\n		genEnemy();\n	}\n}\n\n// mainGame -------------------------------------------------------------------- \nvoid draw()\n{\n	setColour(abs(-player.sheilds), player.sheilds, 0, 255);\n	circle(\"line\", player.x, player.y, player.r);\n	setColour(255, 255, 255, 255);\n	circle(\"line\", player.gunX, player.gunY, 3);\n	int i;\n	// enemy drawing\n	for (i = 0; i <= maxEnemy; i++)\n	{\n		if (enemies[i].active == true)\n		{\n			setColour(abs(-enemies[i].sheilds), enemies[i].sheilds, 0, 255);\n			circle(\"line\", enemies[i].x, enemies[i].y, enemies[i].r);\n		}\n	}\n	// player bullets :3\n	setColour(200, 50, 0, 255);\n	for (i = 0; i <= maxBullets; i++)\n	{\n		if (player.bullets[i].active == true)\n		{\n			pixel(player.bullets[i].x, player.bullets[i].y);\n		}\n	}\n}\n\nvoid controls() // Some input lag as such, but nothing game breaking yet :S\n{\n	// Player movement:\n	if (keyInput.a)\n	{\n		player.x -= player.moveSpeed;\n	}\n	if (keyInput.d)\n	{\n		player.x += player.moveSpeed;\n	}\n	if (keyInput.w)\n	{\n		player.y -= player.moveSpeed;\n	}\n	if (keyInput.s)\n	{\n		player.y += player.moveSpeed;\n	}\n	// Player gun movement:\n	if (keyInput.left)\n	{\n		player.gunAngle -= 6;\n	}\n	if (keyInput.right)\n	{\n		player.gunAngle += 6;\n	}\n\n	if (keyInput.spacebar)\n	{\n		bullet *newBullet = GetNextAvailableBullet(); \n\n		newBullet->active = true; \n		newBullet->origX = player.gunX;\n		newBullet->origY = player.gunY;\n		newBullet->moveR = 0;\n		// rand stuff to allow variance in the bullets :3\n		int chance = randomNum(0, 8);\n		int variation = randomNum(6, 20); // 10 looks nice \n		switch (chance)\n		{\n			case 0:\n				newBullet->angle = player.gunAngle;\n				break;\n\n			case 1 : case 3 : case 5: case 7:\n				newBullet->angle = player.gunAngle;\n				newBullet->angle += variation;\n				break;\n\n			case 2 : case 4 : case 6: case 8:\n				newBullet->angle = player.gunAngle;\n				newBullet->angle -= variation;\n				break;\n\n			default:\n				break;\n		}\n		newBullet->speed = randomNum(20, 40);\n		newBullet->x = cos(degreesToRadians(newBullet->angle))*newBullet->moveR + newBullet->origX;\n		newBullet->y = sin(degreesToRadians(newBullet->angle))*newBullet->moveR + newBullet->origY;\n	}\n\n}\n\nvoid logic()\n{\n	player.gunX = cos(degreesToRadians(player.gunAngle))*player.gunRad + player.x;\n	player.gunY = sin(degreesToRadians(player.gunAngle))*player.gunRad + player.y;\n\n	int i; // moving the player's bullets :3\n	int j;\n	for (i = 0; i < maxBullets; i++)\n	{\n		if (player.bullets[i].active)\n		{\n			player.bullets[i].moveR++;\n			player.bullets[i].x = cos(degreesToRadians(player.bullets[i].angle))*player.bullets[i].moveR + player.bullets[i].origX;\n			player.bullets[i].y = sin(degreesToRadians(player.bullets[i].angle))*player.bullets[i].moveR + player.bullets[i].origY;\n			if (player.bullets[i].y > scrHeight || player.bullets[i].y < 0 || player.bullets[i].x > scrWidth || player.bullets[i].x < 0)\n			{\n				player.bullets[i].active = false;\n			}\n		}\n	}\n\n	// Player death\n	if (player.sheilds < -256)\n	{\n		// Cut to commertial:\n	}\n\n	// Enemies\n	for (i = 0; i < maxEnemy; i++) \n	{\n		if (enemies[i].active == true)\n		{\n			// player - enemy collision\n			if ((circleCircleCollision(player.x, player.y, player.r, enemies[i].x, enemies[i].y, enemies[i].r)) == false)\n			{\n				float angle = giveAngle(enemies[i].x, enemies[i].y, player.x, player.y);\n				player.x = cos(angle)*2 + player.x;\n				player.y = sin(angle)*2 + player.y;\n				player.sheilds--; player.sheilds--;\n				enemies[i].sheilds--;\n			}\n			// enemy death\n			if (enemies[i].sheilds <= -256)\n			{\n				enemies[i].active = false;\n				enemyScore++;\n			}\n			// player bullets - enemy collision\n			int xDelta, yDelta;\n			for (j = 0; j < maxBullets; j++)\n			{\n				if (player.bullets[j].active == true)\n				{\n					xDelta = (player.bullets[j].x - enemies[i].x);\n					yDelta = (player.bullets[j].y - enemies[i].y);\n					if (xDelta*xDelta+yDelta*yDelta <= enemies[i].r*enemies[i].r)\n					{\n						enemies[i].sheilds--;\n						player.bullets[j].active = false;\n					}\n				}\n			}\n			// get the player's angle:\n			enemies[i].targetAngle = giveAngle(enemies[i].x, enemies[i].y, player.x, player.y);\n			// Move the enemy to the player\n			int *x = &enemies[i].x; // Pointers FTW!!!!\n			int *y = &enemies[i].y;\n			float targ = enemies[i].targetAngle;\n			int speed = enemies[i].moveSpeed;\n			*x = cos(targ) * speed/1.1 + *x; // sine and cosine are awesome :3\n			*y = sin(targ) * speed/1.1 + *y;\n		}\n	}\n\n	if (enemyAlive() == false)\n	{\n		level = -1;\n		levelScore++;\n		genPowerup();\n	}\n}\n\n// title -------------------------------------------------------------------- \n\nvoid titleDraw()\n{\n	drawImage(menuScreen, 0, 0);\n}\n\nvoid titleUpdate()\n{\n	if (keyInput.p)\n	{\n		loadNextLevel();\n	}\n}\n\n// break -------------------------------------------------------------------- \n\nvoid breakDraw()\n{\n	drawImage(breakScreen, 0, 0);\n	setColour(abs(-player.sheilds), player.sheilds, 0, 255);\n	circle(\"line\", player.x, player.y, player.r);\n	setColour(255, 255, 255, 255);\n	circle(\"line\", player.gunX, player.gunY, 3);\n	// player bullets :3\n	setColour(200, 50, 0, 255);\n	int i;\n	for (i = 0; i <= maxBullets; i++)\n	{\n		if (player.bullets[i].active == true)\n		{\n			pixel(player.bullets[i].x, player.bullets[i].y);\n		}\n	}\n}\n\nvoid breakUpdate()\n{\n	// Player movement:\n	if (keyInput.a)\n	{\n		player.x -= player.moveSpeed;\n	}\n	if (keyInput.d)\n	{\n		player.x += player.moveSpeed;\n	}\n	if (keyInput.w)\n	{\n		player.y -= player.moveSpeed;\n	}\n	if (keyInput.s)\n	{\n		player.y += player.moveSpeed;\n	}\n	// Player gun movement:\n	if (keyInput.left)\n	{\n		player.gunAngle -= 6;\n	}\n	if (keyInput.right)\n	{\n		player.gunAngle += 6;\n	}\n	if (keyInput.spacebar)\n	{\n		bullet *newBullet = GetNextAvailableBullet(); \n\n		newBullet->active = true; \n		newBullet->origX = player.gunX;\n		newBullet->origY = player.gunY;\n		newBullet->moveR = 0;\n		// rand stuff to allow variance in the bullets :3\n		int chance = randomNum(0, 8);\n		int variation = randomNum(6, 20); // 10 looks nice \n		switch (chance)\n		{\n			case 0:\n				newBullet->angle = player.gunAngle;\n				break;\n\n			case 1 : case 3 : case 5: case 7:\n				newBullet->angle = player.gunAngle;\n				newBullet->angle += variation;\n				break;\n\n			case 2 : case 4 : case 6: case 8:\n				newBullet->angle = player.gunAngle;\n				newBullet->angle -= variation;\n				break;\n\n			default:\n				break;\n		}\n		newBullet->speed = randomNum(20, 40);\n		newBullet->x = cos(degreesToRadians(newBullet->angle))*newBullet->moveR + newBullet->origX;\n		newBullet->y = sin(degreesToRadians(newBullet->angle))*newBullet->moveR + newBullet->origY;\n	}\n	if (keyInput.e)\n	{\n		level = levelScore;\n		loadNextLevel();\n	}\n}",
 			"file": "mainOld.c",
+			"file_size": 10425,
+			"file_write_time": 130219501815728414,
 			"settings":
 			{
 				"buffer_size": 10425,
@@ -897,7 +909,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -934,29 +946,58 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1081,
+						"buffer_size": 1279,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								683,
-								683
+								733,
+								733
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.tmLanguage"
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 135.0,
+						"translation.y": 421.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
+					"file": "README",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 227,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								227,
+								227
+							]
+						],
+						"settings":
+						{
+							"auto_name": "Space!!! :D",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
 					"file": "mainOld.c",
 					"semi_transient": false,
 					"settings":
@@ -984,7 +1025,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 4,
 					"file": "Makefile",
 					"semi_transient": false,
 					"settings":
@@ -1011,7 +1052,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 5,
 					"file": "QL.h",
 					"semi_transient": false,
 					"settings":
@@ -1039,7 +1080,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 6,
 					"semi_transient": false,
 					"settings":
 					{
